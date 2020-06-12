@@ -21,10 +21,11 @@
 # THE SOFTWARE.
 
 DIRNAME="out-$(date +%s)"
+ORGNAME="kepka-app"
 
 function sb_update {
     echo "Updating $2 submodule..."
-    git clone "git@github.com:kepka-app/$2.git" "$DIRNAME/$2"
+    git clone "git@github.com:$ORGNAME/$2.git" "$DIRNAME/$2"
     pushd "$DIRNAME/$2"
         git checkout "$3"
         git remote add upstream "https://github.com/$1/$2.git"
@@ -50,6 +51,8 @@ function sb_start {
     sb_update telegramdesktop libtgvoip tdesktop
     sb_update desktop-app cmake_helpers master
     sb_update desktop-app lib_ui master
+    sb_update desktop-app materialdecoration develop
+    sb_update desktop-app qt5ct master
 }
 
 function sb_finalize {
